@@ -1,10 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My GitHub Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saaida Al Hmounia | Official Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #d4af37; /* Gold accent for a professional look */
+            --text: #ffffff;
+            --bg: #0f0f0f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Scroll Snapping Container */
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 10%;
+            position: relative;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        header a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        header a:hover { color: var(--accent); }
+
+        /* Typography */
+        h1, h2 { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 3.5rem; }
+        p { line-height: 1.6; font-size: 1.1rem; max-width: 600px; opacity: 0.9; }
+
+        /* Layouts */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 500px;
+            background: #222;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--accent);
+        }
+
+        /* Content Cards */
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* Footer Style */
+        .conclusion-text { text-align: center; }
+    </style>
 </head>
 <body>
-    <h1>Hello, world!</h1>
-    <p>I built this using GitHub Pages.</p>
+
+    <header>
+        <a href="#intro">HOME</a>
+        <a href="#circle">INNER CIRCLE</a>
+        <a href="#allies">ALLIES</a>
+        <a href="#day">S1AIDA DAY</a>
+        <a href="#end">CONCLUSION</a>
+    </header>
+
+    <div class="container">
+        
+        <!-- SECTION 1: INTRODUCTION -->
+        <section id="intro">
+            <div class="split">
+                <div class="text-content">
+                    <h1>Saaida Al Hmounia</h1>
+                    <p>Experience the legacy of a figure defined by resilience and influence. This site explores the life, the impact, and the world of Saaida Al Hmounia.</p>
+                </div>
+                <div class="img-content">
+                    <!-- Replace 'saaida.jpg' with your actual image filename -->
+                    <div class="img-placeholder">
+                        <img src="saaida.jpg" alt="Saaida Al Hmounia" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INNER CIRCLE -->
+        <section id="circle">
+            <div class="content">
+                <h2>The Inner Circle</h2>
+                <div class="grid-list">
+                    <div class="card"><h3>Malika</h3><p>Vital support and family bond.</p></div>
+                    <div class="card"><h3>Abdu allah</h3><p>A pillar within her journey.</p></div>
+                    <div class="card"><h3>Mina</h3><p>Close confidant and ally.</p></div>
+                    <div class="card"><h3>Her Daughters</h3><p>The legacy continuing forward.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ALLIES (MOVIE CAST) -->
+        <section id="allies">
+            <div class="content">
+                <h2>The Allies</h2>
+                <p style="margin-bottom: 30px;">Presenting the cast and collaborators of the Saaida movie project.</p>
+                <div class="grid-list">
+                    <div class="card"><h4>Lead Cast</h4></div>
+                    <div class="card"><h4>Production Crew</h4></div>
+                    <div class="card"><h4>Supporters</h4></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INTERNATIONAL DAY -->
+        <section id="day">
+            <div class="content" style="text-align: center;">
+                <h2>Saaida Al Hmounia International Day</h2>
+                <p style="margin: 0 auto 20px auto;">A global celebration dedicated to honoring her story and fostering community discussion.</p>
+                <a href="https://bit.ly/S1AIDA" class="btn" target="_blank">Visit the Official Forum</a>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CONCLUSION -->
+        <section id="end">
+            <div class="conclusion-text">
+                <h2>Conclusion</h2>
+                <p>Thank you for exploring the journey of Saaida Al Hmounia. Her story remains a testament to strength and character.</p>
+            </div>
+        </section>
+
+    </div>
+
 </body>
 </html>
