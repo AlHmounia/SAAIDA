@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saaida Al Hmounia | Official Site</title>
+    <title>Saaida Al Hmounia | Official Presentation</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a1a1a;
-            --accent: #d4af37; /* Gold accent for a professional look */
+            --accent: #d4af37;
             --text: #ffffff;
             --bg: #0f0f0f;
+            --danger: #8b0000; /* For the enemies section */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); overflow: hidden; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        /* Scroll Snapping Container */
+        /* Scroll Snapping */
         .container {
             height: 100vh;
             overflow-y: scroll;
@@ -31,169 +26,208 @@
         }
 
         section {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             scroll-snap-align: start;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            padding: 80px 10%;
+            padding: 100px 8%;
             position: relative;
+            border-bottom: 1px solid #222;
         }
 
-        /* Navigation Header */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            top: 0; width: 100%; padding: 20px;
+            display: flex; justify-content: center; gap: 20px;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(10px); z-index: 1000;
         }
 
-        header a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
+        header a { color: var(--text); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; font-weight: 600; }
         header a:hover { color: var(--accent); }
 
-        /* Typography */
-        h1, h2 { 
-            font-family: 'Playfair Display', serif; 
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
+        h1, h2 { font-family: 'Playfair Display', serif; color: var(--accent); margin-bottom: 20px; }
+        h1 { font-size: 4rem; }
+        h2 { font-size: 2.5rem; text-transform: uppercase; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 10px; margin-bottom: 40px;}
 
-        h1 { font-size: 3.5rem; }
-        p { line-height: 1.6; font-size: 1.1rem; max-width: 600px; opacity: 0.9; }
-
-        /* Layouts */
-        .split {
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        
+        /* Person Card Styling */
+        .person-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 70vh;
+            padding-right: 10px;
         }
 
-        .img-placeholder {
-            width: 100%;
-            height: 500px;
-            background: #222;
-            border-radius: 8px;
+        .person-card {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border: 1px solid var(--accent);
+            background: #161616;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s;
         }
 
-        /* Content Cards */
-        .grid-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            width: 100%;
+        .person-card:hover { transform: translateY(-5px); background: #1f1f1f; }
+
+        .person-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 2px solid var(--accent);
+            background: #333;
         }
 
-        .card {
-            background: #1a1a1a;
-            padding: 20px;
-            border-left: 3px solid var(--accent);
-            border-radius: 4px;
-        }
+        .enemy-card { border-left: 4px solid var(--danger); }
+        .enemy-card .person-img { border-color: var(--danger); }
+
+        .details h3 { font-size: 1.1rem; margin-bottom: 4px; color: var(--accent); }
+        .details p { font-size: 0.85rem; opacity: 0.8; line-height: 1.4; }
 
         .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: var(--accent);
-            color: #000;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
+            display: inline-block; margin-top: 20px; padding: 15px 30px;
+            background: var(--accent); color: #000; text-decoration: none;
+            font-weight: bold; border-radius: 50px; transition: 0.3s;
         }
+        .btn:hover { background: #fff; transform: scale(1.05); }
 
-        /* Footer Style */
-        .conclusion-text { text-align: center; }
+        /* Custom Scrollbar for the grids */
+        .person-grid::-webkit-scrollbar { width: 5px; }
+        .person-grid::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#intro">HOME</a>
+        <a href="#intro">START</a>
         <a href="#circle">INNER CIRCLE</a>
-        <a href="#allies">ALLIES</a>
-        <a href="#day">S1AIDA DAY</a>
-        <a href="#end">CONCLUSION</a>
+        <a href="#allies">THE ALLIES</a>
+        <a href="#day">INTL DAY</a>
+        <a href="#enemies">OPPOSITION</a>
+        <a href="#end">FINISH</a>
     </header>
 
     <div class="container">
         
-        <!-- SECTION 1: INTRODUCTION -->
+        <!-- INTRO -->
         <section id="intro">
             <div class="split">
-                <div class="text-content">
-                    <h1>Saaida Al Hmounia</h1>
-                    <p>Experience the legacy of a figure defined by resilience and influence. This site explores the life, the impact, and the world of Saaida Al Hmounia.</p>
+                <div>
+                    <h1>Saaida <br>Al Hmounia</h1>
+                    <p>A deep dive into the life, family, and legacy of an extraordinary figure. From the heart of her inner circle to the global stage of her International Day.</p>
                 </div>
-                <div class="img-content">
-                    <!-- Replace 'saaida.jpg' with your actual image filename -->
-                    <div class="img-placeholder">
-                        <img src="saaida.jpg" alt="Saaida Al Hmounia" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
-                    </div>
-                </div>
+                <img src="saaida.jpg" alt="Saaida" style="width:100%; border-radius: 20px; border: 1px solid var(--accent);">
             </div>
         </section>
 
-        <!-- SECTION 2: INNER CIRCLE -->
+        <!-- INNER CIRCLE -->
         <section id="circle">
-            <div class="content">
-                <h2>The Inner Circle</h2>
-                <div class="grid-list">
-                    <div class="card"><h3>Malika</h3><p>Vital support and family bond.</p></div>
-                    <div class="card"><h3>Abdu allah</h3><p>A pillar within her journey.</p></div>
-                    <div class="card"><h3>Mina</h3><p>Close confidant and ally.</p></div>
-                    <div class="card"><h3>Her Daughters</h3><p>The legacy continuing forward.</p></div>
+            <h2>The Inner Circle</h2>
+            <div class="person-grid">
+                <!-- Best Friend -->
+                <div class="person-card">
+                    <img src="malika.jpg" class="person-img" alt="Malika">
+                    <div class="details"><h3>Malika</h3><p>Saaida's loyal best friend and closest confidante throughout the years.</p></div>
+                </div>
+                <!-- Husband -->
+                <div class="person-card">
+                    <img src="abduallah.jpg" class="person-img" alt="Abdu allah">
+                    <div class="details"><h3>Abdu allah</h3><p>The devoted husband providing the foundation for the family legacy.</p></div>
+                </div>
+                <!-- Mother -->
+                <div class="person-card">
+                    <img src="latifa.jpg" class="person-img" alt="Latifa">
+                    <div class="details"><h3>Latifa</h3><p>The matriarch and mother, the root of Saaida's strength.</p></div>
+                </div>
+                <!-- Sisters & Brother -->
+                <div class="person-card">
+                    <img src="khawla.jpg" class="person-img" alt="Khawla">
+                    <div class="details"><h3>Khawla & Sara</h3><p>Saaida's sisters, sharing a bond that transcends time.</p></div>
+                </div>
+                <div class="person-card">
+                    <img src="ahmad.jpg" class="person-img" alt="Ahmad">
+                    <div class="details"><h3>Ahmad</h3><p>The protective brother and a key figure in the family dynamic.</p></div>
+                </div>
+                <div class="person-card">
+                    <img src="mina.jpg" class="person-img" alt="Mina">
+                    <div class="details"><h3>Mina</h3><p>Another beloved sister who stands firmly by Saaida's side.</p></div>
+                </div>
+                <!-- Children -->
+                <div class="person-card">
+                    <img src="sons.jpg" class="person-img" alt="Sons">
+                    <div class="details"><h3>Rayane & 3imad</h3><p>The sons carrying the family name into the next generation.</p></div>
+                </div>
+                <div class="person-card">
+                    <img src="daughters.jpg" class="person-img" alt="Daughters">
+                    <div class="details"><h3>Najma & Sirine</h3><p>The daughters, representing the grace and future of the lineage.</p></div>
+                </div>
+                <!-- Extended -->
+                <div class="person-card">
+                    <img src="aunt.jpg" class="person-img" alt="Aunt">
+                    <div class="details"><h3>3aisha</h3><p>The wise aunt and holder of family traditions.</p></div>
+                </div>
+                <div class="person-card">
+                    <img src="grandkids.jpg" class="person-img" alt="Grandchildren">
+                    <div class="details"><h3>The Grandchildren</h3><p>Marwa, Yasmine, Nabil, Jamal, 7afid, and Saad—the vibrant future.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: ALLIES (MOVIE CAST) -->
+        <!-- ALLIES -->
         <section id="allies">
-            <div class="content">
-                <h2>The Allies</h2>
-                <p style="margin-bottom: 30px;">Presenting the cast and collaborators of the Saaida movie project.</p>
-                <div class="grid-list">
-                    <div class="card"><h4>Lead Cast</h4></div>
-                    <div class="card"><h4>Production Crew</h4></div>
-                    <div class="card"><h4>Supporters</h4></div>
+            <h2>The Allies & Cast</h2>
+            <div class="person-grid">
+                <div class="person-card">
+                    <img src="sally.jpg" class="person-img" alt="Sally">
+                    <div class="details"><h3>Sally</h3><p>A key ally and cast member in the Saaida movie project.</p></div>
+                </div>
+                <div class="person-card">
+                    <img src="kacy.jpg" class="person-img" alt="Kacy">
+                    <div class="details"><h3>Kacy</h3><p>Supporting the mission with unwavering dedication.</p></div>
+                </div>
+                <div class="person-card">
+                    <img src="kirby.jpg" class="person-img" alt="Kirby">
+                    <div class="details"><h3>Kirby</h3><p>Strategic partner in bringing Saaida's story to the screen.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: INTERNATIONAL DAY -->
-        <section id="day">
-            <div class="content" style="text-align: center;">
-                <h2>Saaida Al Hmounia International Day</h2>
-                <p style="margin: 0 auto 20px auto;">A global celebration dedicated to honoring her story and fostering community discussion.</p>
-                <a href="https://bit.ly/S1AIDA" class="btn" target="_blank">Visit the Official Forum</a>
+        <!-- INTL DAY -->
+        <section id="day" style="text-align: center;">
+            <h2>International Day</h2>
+            <p style="max-width: 800px; margin: 0 auto 30px auto; font-size: 1.3rem;">
+                The <strong>Saaida Al Hmounia International Day</strong> is a global event dedicated to discussing her impact on culture and community. It serves as a bridge for allies and fans worldwide to unite.
+            </p>
+            <a href="https://bit.ly/S1AIDA" class="btn" target="_blank">Access the Forum</a>
+        </section>
+
+        <!-- ENEMIES -->
+        <section id="enemies">
+            <h2 style="color: var(--danger); border-color: var(--danger);">The Opposition</h2>
+            <div class="person-grid">
+                <div class="person-card enemy-card">
+                    <img src="assiya.jpg" class="person-img" alt="Assiya">
+                    <div class="details"><h3>Assiya</h3><p>The primary antagonist driven by envy and opposition.</p></div>
+                </div>
+                <div class="person-card enemy-card">
+                    <img src="alqaqa.jpg" class="person-img" alt="Al Qaqa">
+                    <div class="details"><h3>Al Qaqa & Al Qaqous</h3><p>The forces working against the legacy of Saaida.</p></div>
+                </div>
             </div>
         </section>
 
-        <!-- SECTION 5: CONCLUSION -->
-        <section id="end">
-            <div class="conclusion-text">
-                <h2>Conclusion</h2>
-                <p>Thank you for exploring the journey of Saaida Al Hmounia. Her story remains a testament to strength and character.</p>
-            </div>
+        <!-- CONCLUSION -->
+        <section id="end" style="text-align: center; background: linear-gradient(to top, #1a1a1a, #0f0f0f);">
+            <h1>The Legacy Continues</h1>
+            <p style="margin: 0 auto;">Professional. Powerful. Unforgettable.<br>The Story of Saaida Al Hmounia.</p>
         </section>
 
     </div>
